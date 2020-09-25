@@ -35,11 +35,15 @@ for lineString in line_list:
     # Assign variables to specfic items in the list
     record_id = lineData[0]             # ARGOS tracking record ID
     obs_date = lineData[2]
-    ob_lc = lineData[4]                 # Observation Location Class
+    obs_lc = lineData[4]                # Observation Location Class
+    #if obs_lc not in ("1","2","3"):
+        #continue
     obs_lat = lineData[6]               # Observation Latitude
     obs_lon = lineData[7]               # Observation Longitude
     
-    # Print information to the use
-    print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat}, lon:{obs_lon} on {obs_date}")
-    date_dict[record_id] = obs_date
-    coord_dict[record_id] = (obs_lat,obs_lon)
+    # Print the location os sara if lc is 1, 2, or 3
+    if obs_lc in ("1","2","3"):
+        print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat}, lon:{obs_lon} on {obs_date}")
+        date_dict[record_id] = obs_date
+        coord_dict[record_id] = (obs_lat,obs_lon)
+        
